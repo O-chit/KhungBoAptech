@@ -1,0 +1,13 @@
+.cart {
+  margin-top: 30px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.cart button {
+  cursor: pointer;
+}
