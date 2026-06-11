@@ -4,42 +4,81 @@ import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 
-import products from "./data/products";
-
 import "./styles/app.css";
 
 function App() {
-  const [cart, setCart] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Tất cả");
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      name: "Do homework",
+      description: "Complete React assignment",
+    },
+    {
+      id: 2,
+      name: "Read book",
+      description: "Read 20 pages",
+    },
+  ]);
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((item) => item.id === product.id);
-      if (existing) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prevCart, { ...product, quantity: 1 }];
+  const [taskForm, setTaskForm] = useState({
+    name: "",
+    description: "",
+  });
+
+  const [editingId, setEditingId] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!taskForm.name || !taskForm.description) {
+      return;
+    }
+
+    if (editingId) {
+      setTasks(
+        tasks.map((task) =>
+          task.id === editingId
+            ? { ...task, ...taskForm }
+            : task
+        )
+      );
+
+      setEditingId(null);
+    } else {
+      const newTask = {
+        id: Date.now(),
+        ...taskForm,
+      };
+
+      setTasks([...tasks, newTask]);
+    }
+
+    setTaskForm({
+      name: "",
+      description: "",
     });
   };
 
-  const updateQuantity = (id, amount) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + amount } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+  const handleEdit = (task) => {
+    setTaskForm({
+      name: task.name,
+      description: task.description,
+    });
+
+    setEditingId(task.id);
   };
 
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
+  const handleDelete = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
 
-  const clearCart = () => {
-    setCart([]);
+    if (editingId === id) {
+      setEditingId(null);
+
+      setTaskForm({
+        name: "",
+        description: "",
+      });
+    }
   };
 
   const categories = ["Tất cả", ...new Set(products.map((p) => p.category))];
@@ -51,39 +90,64 @@ function App() {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="app-container">
-      <Navbar cartCount={cartCount} />
+    <div>
+      <Navbar />
 
-      <main className="main-content">
-        <div className="catalog-section">
-          {/* Category Filter Bar */}
-          <div className="filter-bar">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`filter-btn ${selectedCategory === cat ? "active" : ""}`}
-                onClick={() => setSelectedCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+      <div className="container">
+        <form className="cart" onSubmit={handleSubmit}>
+          <h2>
+            {editingId
+              ? "Edit Task"
+              : "Create New Task"}
+          </h2>
+
+          <div className="cart-item">
+            <input
+              type="text"
+              placeholder="Task name"
+              value={taskForm.name}
+              onChange={(e) =>
+                setTaskForm({
+                  ...taskForm,
+                  name: e.target.value,
+                })
+              }
+            />
           </div>
 
-          <ProductList
-            products={filteredProducts}
-            addToCart={addToCart}
-          />
-        </div>
+          <div className="cart-item">
+            <input
+              type="text"
+              placeholder="Task description"
+              value={taskForm.description}
+              onChange={(e) =>
+                setTaskForm({
+                  ...taskForm,
+                  description:
+                    e.target.value,
+                })
+              }
+            />
+          </div>
 
-        <div className="cart-section">
-          <Cart
-            cart={cart}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            clearCart={clearCart}
-          />
-        </div>
-      </main>
+          <button type="submit">
+            {editingId
+              ? "Update Task"
+              : "Add Task"}
+          </button>
+        </form>
+
+        <Cart
+          cart={tasks}
+          removeFromCart={handleDelete}
+          editTask={handleEdit}
+        />
+
+        <ProductList
+          products={tasks}
+          addToCart={handleEdit}
+        />
+      </div>
     </div>
   );
 }
