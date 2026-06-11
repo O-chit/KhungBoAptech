@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import BadgeForm from './../../components/BadgeForm'
+import Form from './../../components/Form'
 
 export default function EditPage() {
     const badgeId = Number(useParams().badgeId)
@@ -7,7 +7,7 @@ export default function EditPage() {
     return (
         <div className='edit-div'>
             <h1>Edit badge</h1>
-            <BadgeForm badgeId={badgeId} />
+            <Form badgeId={badgeId} />
         </div>
     )
 }

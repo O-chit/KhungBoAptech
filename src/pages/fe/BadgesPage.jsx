@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import BadgeRow from './../../components/BadgeRow'
+import Row from './../../components/Row'
 import sharedData from './../../configs/SharedData'
 
 export default function BadgesPage() {
@@ -25,7 +25,7 @@ export default function BadgesPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {badges.map(badge => (<BadgeRow key={badge.id} badge={badge} />))}
+                    {badges.map(badge => (<Row key={badge.id} badge={badge} />))}
                 </tbody>
             </table>
             <button onClick={() => navigate('/add')}>Add new badge</button>

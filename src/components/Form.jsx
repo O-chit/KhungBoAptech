@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import sharedData from './../configs/SharedData'
 
-export default function BadgeForm({ badgeId }) {
+export default function Form({ badgeId }) {
     const navigate = useNavigate()
     const badges = sharedData.badges
     const [badge, setBadge] = useState({

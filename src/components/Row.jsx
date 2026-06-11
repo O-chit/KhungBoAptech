@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function BadgeRow({ badge }) {
+export default function Row({ badge }) {
     const navigate = useNavigate()
 
     return (
