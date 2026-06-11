@@ -3,40 +3,44 @@ import "../styles/cart.css";
 function Cart({
   cart,
   removeFromCart,
+  editTask,
 }) {
-  const total = cart.reduce(
-    (sum, item) => sum + item.price,
-    0
-  );
-
   return (
     <div className="cart">
-      <h2>Cart</h2>
+      <h2>Task List</h2>
 
       {cart.length === 0 ? (
-        <p>Cart Empty</p>
+        <p>No tasks available</p>
       ) : (
         <>
-          {cart.map((item, index) => (
+          {cart.map((item) => (
             <div
-              key={index}
+              key={item.id}
               className="cart-item"
             >
               <span>
                 {item.name}
               </span>
 
-              <button
-                onClick={() =>
-                  removeFromCart(index)
-                }
-              >
-                Remove
-              </button>
+              <div>
+                <button
+                  onClick={() =>
+                    editTask(item)
+                  }
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() =>
+                    removeFromCart(item.id)
+                  }
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
-
-          <h3>Total: ${total}</h3>
         </>
       )}
     </div>

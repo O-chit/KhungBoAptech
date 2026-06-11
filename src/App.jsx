@@ -4,27 +4,81 @@ import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 
-import products from "./data/products";
-
 import "./styles/app.css";
 
 function App() {
-  const [cart, setCart] =
-    useState([]);
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      name: "Do homework",
+      description: "Complete React assignment",
+    },
+    {
+      id: 2,
+      name: "Read book",
+      description: "Read 20 pages",
+    },
+  ]);
 
-  const addToCart = (product) => {
-    setCart([
-      ...cart,
-      product,
-    ]);
+  const [taskForm, setTaskForm] = useState({
+    name: "",
+    description: "",
+  });
+
+  const [editingId, setEditingId] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!taskForm.name || !taskForm.description) {
+      return;
+    }
+
+    if (editingId) {
+      setTasks(
+        tasks.map((task) =>
+          task.id === editingId
+            ? { ...task, ...taskForm }
+            : task
+        )
+      );
+
+      setEditingId(null);
+    } else {
+      const newTask = {
+        id: Date.now(),
+        ...taskForm,
+      };
+
+      setTasks([...tasks, newTask]);
+    }
+
+    setTaskForm({
+      name: "",
+      description: "",
+    });
   };
 
-  const removeFromCart = (index) => {
-    const newCart = [...cart];
+  const handleEdit = (task) => {
+    setTaskForm({
+      name: task.name,
+      description: task.description,
+    });
 
-    newCart.splice(index, 1);
+    setEditingId(task.id);
+  };
 
-    setCart(newCart);
+  const handleDelete = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+
+    if (editingId === id) {
+      setEditingId(null);
+
+      setTaskForm({
+        name: "",
+        description: "",
+      });
+    }
   };
 
   return (
@@ -32,14 +86,58 @@ function App() {
       <Navbar />
 
       <div className="container">
-        <ProductList
-          products={products}
-          addToCart={addToCart}
-        />
+        <form className="cart" onSubmit={handleSubmit}>
+          <h2>
+            {editingId
+              ? "Edit Task"
+              : "Create New Task"}
+          </h2>
+
+          <div className="cart-item">
+            <input
+              type="text"
+              placeholder="Task name"
+              value={taskForm.name}
+              onChange={(e) =>
+                setTaskForm({
+                  ...taskForm,
+                  name: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          <div className="cart-item">
+            <input
+              type="text"
+              placeholder="Task description"
+              value={taskForm.description}
+              onChange={(e) =>
+                setTaskForm({
+                  ...taskForm,
+                  description:
+                    e.target.value,
+                })
+              }
+            />
+          </div>
+
+          <button type="submit">
+            {editingId
+              ? "Update Task"
+              : "Add Task"}
+          </button>
+        </form>
 
         <Cart
-          cart={cart}
-          removeFromCart={removeFromCart}
+          cart={tasks}
+          removeFromCart={handleDelete}
+          editTask={handleEdit}
+        />
+
+        <ProductList
+          products={tasks}
+          addToCart={handleEdit}
         />
       </div>
     </div>

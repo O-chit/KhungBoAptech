@@ -3,7 +3,7 @@ import "../styles/navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <h2>Simple Shop</h2>
+      <h2>Task Management</h2>
     </nav>
   );
 }
