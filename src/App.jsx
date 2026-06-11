@@ -81,6 +81,14 @@ function App() {
     }
   };
 
+  const categories = ["Tất cả", ...new Set(products.map((p) => p.category))];
+  
+  const filteredProducts = selectedCategory === "Tất cả"
+    ? products
+    : products.filter((p) => p.category === selectedCategory);
+
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <div>
       <Navbar />

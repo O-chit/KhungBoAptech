@@ -2,6 +2,7 @@ import "../styles/cart.css";
 
 function Cart({
   cart,
+  updateQuantity,
   removeFromCart,
   editTask,
 }) {
