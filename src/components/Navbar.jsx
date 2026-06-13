@@ -1,4 +1,4 @@
-import "../styles/navbar.css";
+// import "../styles/navbar.css";
 
 function Navbar({ cartCount = 0, activeTab = "Tất cả", onTabChange }) {
   const tabs = [
