@@ -1,0 +1,25 @@
+/* ─── StatusBadge ──────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1.5px solid var(--badge-color);
+  transition: opacity 0.2s;
+}
+
+.status-badge__icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.status-badge__text {
+  line-height: 1;
+}
