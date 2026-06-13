@@ -1,0 +1,81 @@
+/* ─── TaskListPage ─────────────────────────────────────────── */
+.task-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: #fff;
+}
+
+/* Header */
+.task-table thead tr {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+}
+
+.task-table thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+/* Body rows */
+.task-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.18s;
+}
+
+.task-table tbody tr:hover {
+  background: #f8faff;
+}
+
+.task-table td {
+  padding: 13px 16px;
+  vertical-align: middle;
+  color: #374151;
+}
+
+/* Left border highlight theo trạng thái */
+.task-row--to-do {
+  border-left: 4px solid #6366f1;
+}
+.task-row--in-progress {
+  border-left: 4px solid #f59e0b;
+}
+.task-row--done {
+  border-left: 4px solid #10b981;
+  opacity: 0.8;
+}
+.task-row--done td.col-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Cột */
+.col-id    { width: 60px;  font-weight: 700; color: #6b7280; }
+.col-title { min-width: 150px; font-weight: 600; }
+.col-desc  { min-width: 200px; color: #6b7280; }
+.col-status { width: 140px; }
+.col-action { width: 160px; }
+
+/* Empty state */
+.task-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px;
+  color: #9ca3af;
+  font-size: 1rem;
+}
+.task-empty span {
+  font-size: 2.5rem;
+}

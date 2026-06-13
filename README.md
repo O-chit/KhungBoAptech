@@ -1,7 +1,77 @@
+# Ứng dụng Quản lý Công việc
 
-HEAD
+Ứng dụng web quản lý công việc dành cho sinh viên, xây dựng bằng **React** và **Vite**. Cho phép xem danh sách công việc, theo dõi trạng thái và cập nhật tiến độ một cách trực quan.
+
+---
+
+## 🚀 Công nghệ sử dụng
+
+- [React](https://react.dev/) – Thư viện xây dựng giao diện người dùng
+- [Vite](https://vitejs.dev/) – Công cụ build nhanh cho ứng dụng web hiện đại
+- [React Router DOM](https://reactrouter.com/) – Điều hướng trang trong ứng dụng
+
+---
+
+## ✅ Chức năng Quản lý Công việc
+
+### 📋 Danh sách công việc (`TaskListPage`)
+
+Trang chính hiển thị toàn bộ danh sách công việc dưới dạng bảng với các cột:
+
+| Cột                   | Mô tả                                  |
+| --------------------- | -------------------------------------- |
+| **ID**                | Mã định danh công việc                 |
+| **Tên công việc**     | Tiêu đề của công việc                  |
+| **Mô tả**             | Chi tiết nội dung công việc            |
+| **Trạng thái**        | Nhãn màu hiển thị trạng thái hiện tại  |
+| **Chuyển trạng thái** | Dropdown để thay đổi tiến độ công việc |
+
+> Khi chưa có công việc nào, trang hiển thị thông báo _"Chưa có công việc nào."_
+
+---
+
+### 🏷️ Trạng thái công việc
+
+Mỗi công việc có một trong **3 trạng thái** sau:
+
+| Trạng thái      | Biểu tượng | Màu sắc      |
+| --------------- | ---------- | ------------ |
+| **To Do**       | ⏳         | Tím Indigo   |
+| **In Progress** | 🔄         | Vàng Amber   |
+| **Done**        | ✅         | Xanh Emerald |
+
+### 🔖 `StatusBadge` – Nhãn trạng thái
+
+Component hiển thị trạng thái công việc dưới dạng **badge màu sắc** trực quan, giúp người dùng nhận biết nhanh tiến độ mà không cần đọc chữ.
+
+### 🔀 `StatusToggle` – Chuyển đổi trạng thái
+
+Component **dropdown** cho phép người dùng thay đổi trạng thái của từng công việc ngay trên bảng danh sách. Các lựa chọn bao gồm đầy đủ 3 trạng thái: _To Do_, _In Progress_, _Done_.
+
+---
+
+## 📁 Cấu trúc thư mục
+
+```
+src/
+├── components/
+│   ├── StatusBadge.jsx     # Nhãn hiển thị trạng thái
+│   └── StatusToggle.jsx    # Dropdown chuyển đổi trạng thái
+├── constants/
+│   └── taskStatus.js       # Định nghĩa các trạng thái & cấu hình màu
+├── pages/
+│   └── TaskListPage.jsx    # Trang danh sách công việc
+└── App.jsx                 # Cấu hình định tuyến chính
+```
+
+# =======
+
+> > > > > > > 30bd262af61f31180d65601d48481543e55587cd
+> > > > > > > HEAD
+
 # React + Vite
->>>>>>> f75ae1d8cbc5f80ea4e2c32df04def9e633eba3f
+
+> > > > > > > f75ae1d8cbc5f80ea4e2c32df04def9e633eba3f
 
 Ứng dụng hỗ trợ sinh viên quản lý, theo dõi và sắp xếp công việc học tập một cách khoa học và hiệu quả. Dự án được xây dựng trên nền tảng React và Vite.
 
@@ -10,40 +80,48 @@ HEAD
 ## 🚀 Tính năng chính
 
 ### 1. Quản lý công việc (Task & Badge Management)
+
 - Xem danh sách các công việc/nhãn trạng thái (Badges) hỗ trợ phân loại mức độ ưu tiên của công việc.
 - Thêm mới công việc/badge với các thông tin chi tiết: Tên, mô tả, loại nhãn, icon biểu thị.
 - Cập nhật hoặc xóa các công việc/nhãn khi đã hoàn thành hoặc thay đổi kế hoạch.
 
 ### 2. Hệ thống định tuyến & Điều hướng (Navigation & Routing)
+
 - Thanh điều hướng (Navigation Bar) tích hợp chuyển đổi nhanh giữa các khu vực của hệ thống.
 - Tích hợp giao diện Đăng nhập (Login) và Hồ sơ cá nhân (Profile) của sinh viên.
 - Định tuyến linh hoạt giữa các chức năng Thêm/Sửa/Xóa.
 
 ---
 
-<<<<<<< HEAD
 ## 🛠️ Hướng dẫn cài đặt
 
 Để chạy dự án dưới máy cục bộ (local), vui lòng thực hiện theo các bước sau:
 
 ### 1. Tải mã nguồn về máy
+
 Sao chép (clone) kho lưu trữ từ GitHub:
+
 ```bash
 git clone https://github.com/O-chit/KhungBoAptech.git
 cd KhungBoAptech
 ```
 
 ### 2. Cài đặt các gói thư viện phụ thuộc (Dependencies)
+
 Chạy lệnh install để tải về các thư viện cần thiết (`react`, `react-dom`, `react-router-dom`...):
+
 ```bash
 npm install
 ```
 
 ### 3. Khởi chạy máy chủ phát triển (Development Server)
+
 Khởi động dự án ở chế độ local:
+
 ```bash
 npm run dev
 ```
+
 Sau khi khởi chạy thành công, truy cập ứng dụng thông qua trình duyệt tại địa chỉ: [http://localhost:5173](http://localhost:5173)
 
 ---
@@ -53,9 +131,8 @@ Sau khi khởi chạy thành công, truy cập ứng dụng thông qua trình du
 1. **Xem danh sách công việc**: Ngay khi vào trang chủ, hệ thống hiển thị bảng danh sách các nhãn công việc hiện tại bao gồm ID, Tên, Mô tả, Loại nhãn, Icon, Thời gian tạo/Cập nhật.
 2. **Thêm công việc mới**: Nhấn nút **"Add new badge"**, nhập đầy đủ thông tin vào biểu mẫu (Form) và nhấn **"Submit"**.
 3. **Chỉnh sửa thông tin**: Chọn hàng công việc tương ứng, nhấn nút **"Edit"**, cập nhật thông tin mới và lưu lại.
-4. **Xóa công việc**: Nhấn nút **"Delete"** bên cạnh công việc muốn xóa, xác nhận thông tin công việc rồi nhấn **"Delete"** để hoàn tất xóa.
-=======
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. # **Xóa công việc**: Nhấn nút **"Delete"** bên cạnh công việc muốn xóa, xác nhận thông tin công việc rồi nhấn **"Delete"** để hoàn tất xóa.
+   If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 # 📋 Task Manager – Hệ thống quản lý công việc nhóm
 
@@ -79,12 +156,12 @@ If you are developing a production application, we recommend using TypeScript wi
 
 **Task Manager** là ứng dụng quản lý công việc được xây dựng theo mô hình Kanban, hỗ trợ nhóm làm việc theo dõi tiến độ dự án theo 4 trạng thái:
 
-| Trạng thái | Mô tả |
-|---|---|
-| 🟣 **To Do** | Công việc đã tạo, chưa bắt đầu |
-| 🟡 **In Progress** | Đang được thực hiện |
-| 🔵 **Review** | Đã xong, đang chờ kiểm tra |
-| 🟢 **Done** | Hoàn thành và được duyệt |
+| Trạng thái         | Mô tả                          |
+| ------------------ | ------------------------------ |
+| 🟣 **To Do**       | Công việc đã tạo, chưa bắt đầu |
+| 🟡 **In Progress** | Đang được thực hiện            |
+| 🔵 **Review**      | Đã xong, đang chờ kiểm tra     |
+| 🟢 **Done**        | Hoàn thành và được duyệt       |
 
 **Công nghệ sử dụng:**
 
@@ -109,11 +186,11 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## 💻 Yêu cầu hệ thống
 
-| Công cụ | Phiên bản tối thiểu |
-|---|---|
-| Node.js | 18.x trở lên |
+| Công cụ           | Phiên bản tối thiểu    |
+| ----------------- | ---------------------- |
+| Node.js           | 18.x trở lên           |
 | npm / yarn / pnpm | npm 9+ hoặc yarn 1.22+ |
-| Git | 2.x trở lên |
+| Git               | 2.x trở lên            |
 
 ---
 
@@ -224,12 +301,12 @@ task-manager/
 
 ## 👥 Phân công thành viên
 
-| Thành viên | Nhánh Git | Chức năng phụ trách |
-|---|---|---|
-| **Thành viên 1** | `feature/kanban-board` | Giao diện Kanban Board chính, kéo-thả trạng thái |
-| **Thành viên 2** | `feature/task-crud` | Tạo, chỉnh sửa, xoá công việc (CRUD) |
-| **Thành viên 3** | `feature/filter-search` | Lọc & tìm kiếm công việc |
-| **Thành viên 4** | `feature/report-and-docs` | Trang thống kê + tài liệu dự án (file này) |
+| Thành viên       | Nhánh Git                 | Chức năng phụ trách                              |
+| ---------------- | ------------------------- | ------------------------------------------------ |
+| **Thành viên 1** | `feature/kanban-board`    | Giao diện Kanban Board chính, kéo-thả trạng thái |
+| **Thành viên 2** | `feature/task-crud`       | Tạo, chỉnh sửa, xoá công việc (CRUD)             |
+| **Thành viên 3** | `feature/filter-search`   | Lọc & tìm kiếm công việc                         |
+| **Thành viên 4** | `feature/report-and-docs` | Trang thống kê + tài liệu dự án (file này)       |
 
 ---
 
@@ -255,22 +332,21 @@ git push origin feature/ten-tinh-nang
 
 Dự án học thuật – không dùng cho mục đích thương mại.
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 822c68b (docs: update README title and add installation guide)
 # Hệ thống Quản lý Công việc Sinh viên
 
 ## Giới thiệu
+
 Ứng dụng giúp sinh viên quản lý công việc và theo dõi tiến độ học tập hiệu quả.
 
 ## Chức năng chính
+
 - Đăng nhập / Đăng ký tài khoản
 - Quản lý hồ sơ người dùng
 - Thêm, chỉnh sửa, xóa công việc
 - Thống kê tiến độ
 
 ## Hướng dẫn cài đặt
+
 1. Clone repository:
    git clone https://github.com/O-chit/KhungBoAptech.git
 
@@ -281,7 +357,7 @@ Dự án học thuật – không dùng cho mục đích thương mại.
    npm run dev
 
 ## Hướng dẫn sử dụng
+
 - Truy cập http://localhost:5173
 - Đăng ký tài khoản mới hoặc đăng nhập
 - Bắt đầu quản lý công việc của bạn
->>>>>>> f75ae1d8cbc5f80ea4e2c32df04def9e633eba3f
