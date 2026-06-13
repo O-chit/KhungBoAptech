@@ -1,26 +1,16 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BadgesPage from "./pages/fe/BadgesPage";
-import AddPage from "./pages/fe/AddPage";
-import EditPage from "./pages/fe/EditPage";
-import DeletePage from "./pages/fe/DeletePage";
-
-
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import './App.css'
+import Login from "./pages/Login";
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-
-    <Router>
-      <Routes>
-        <Route path="/" element={<BadgesPage />} />
-        <Route path="/add" element={<AddPage />} />
-        <Route path="/edit/:badgeId" element={<EditPage />} />
-        <Route path="/delete/:badgeId" element={<DeletePage />} />
-      </Routes>
-    </Router>
-  );
-
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/tasks" element={<Tasks />} />
+    <Route path="/login" element={<Login />} />
+</Routes>
 }
 
 export default App
