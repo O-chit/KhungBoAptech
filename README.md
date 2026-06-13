@@ -214,7 +214,10 @@ git push origin feature/ten-tinh-nang
 
 Dự án học thuật – không dùng cho mục đích thương mại.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 822c68b (docs: update README title and add installation guide)
 # Hệ thống Quản lý Công việc Sinh viên
 
 ## Giới thiệu
