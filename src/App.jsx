@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BadgesPage from "./pages/fe/BadgesPage";
 import AddPage from "./pages/fe/AddPage";
@@ -10,7 +10,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-<<<<<<< HEAD
+
     <Router>
       <Routes>
         <Route path="/" element={<BadgesPage />} />
